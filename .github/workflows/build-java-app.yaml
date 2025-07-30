@@ -26,4 +26,6 @@ jobs:
         with:
           path: java-app/target/*.jar
       - name: Publish the artifact
-        run: mvn deploy --file java-app/pom.xml
+        run: mvn deploy -P github --file java-app/pom.xml
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

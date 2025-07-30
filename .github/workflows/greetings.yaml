@@ -1,0 +1,22 @@
+name: Greetings
+
+on:
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened]
+
+jobs:
+  greeting-log:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Greet
+        run: echo "Hello, World!!!"
+  greeting-message:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Write message
+        uses: actions/first-interaction@v2.0.0
+        with:
+          issue_message: "Hello, World!"
+          pr_message: "Hello, World!"

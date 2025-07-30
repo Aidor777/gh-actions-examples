@@ -21,7 +21,7 @@ jobs:
           cache: 'maven'
           server-id: github
           server-username: Aidor777
-          server-password: ${GH_TOKEN}
+          server-password: GH_TOKEN
       - name: Build with Maven
         run: mvn -B package --file java-app/pom.xml
       - name: Upload JAR

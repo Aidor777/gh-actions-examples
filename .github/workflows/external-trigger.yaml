@@ -1,0 +1,13 @@
+name: External Trigger Example
+on:
+  repository_dispatch:
+    types:
+      - custom-event-type
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo Unit "${{ github.event.client_payload.unit}}"
+      - run: echo Integration "${{ github.event.client_payload.integration}}"

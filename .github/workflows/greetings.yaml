@@ -1,6 +1,12 @@
 name: Greetings
 
-on: [pull_request_target, issues]
+on:
+  pull_request:
+    types:
+      - opened
+  issues:
+    types:
+      - opened
 
 permissions:
   issues: write
@@ -19,5 +25,6 @@ jobs:
     steps:
       - uses: actions/first-interaction@v2.0.0
         with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
           issue-message: "Hello World"
           pr-message: "Hello World"

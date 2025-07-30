@@ -25,3 +25,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           path: java-app/target/*.jar
+      - name: Publish the artifact
+        run: mvn deploy --file java-app/pom.xml

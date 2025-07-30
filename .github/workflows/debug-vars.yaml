@@ -26,6 +26,9 @@ jobs:
       - name: Print the final value
         run: echo "Final MY_VAR value is $MY_VAR"  # And there? Overridden via GITHUB_ENV
 
+      - name: Print the final value 2
+        run: echo "Final MY_VAR value is ${{ env.MY_VAR }}"  # And there? Overridden via GITHUB_ENV
+
       - name: Print Secret-Based Variable
         run:
           echo "Final Secret Value is ${{ secrets.MY_VAR }}"  # And there? Nothing

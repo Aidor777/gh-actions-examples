@@ -1,0 +1,22 @@
+name: Build Java App With Action
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  package-app:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run the whole build
+        uses: .github/actions/build-java-app
+        with:
+          username: Aidor777
+          password: ${{ secrets.GITHUB_TOKEN }}
+          app-directory: java-app

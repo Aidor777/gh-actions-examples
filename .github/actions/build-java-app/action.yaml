@@ -42,6 +42,6 @@ runs:
         path: ${{ inputs.app-directory }}/target/*.jar
     - name: Publish the artifact
       shell: bash
-      run: mvn deploy --file {{ inputs.app-directory }}/pom.xml
+      run: mvn deploy --file ${{ inputs.app-directory }}/pom.xml
       env:
         GH_TOKEN: ${{ inputs.password }}

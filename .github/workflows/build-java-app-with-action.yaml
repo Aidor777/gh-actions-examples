@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Run the whole build
-        uses: /.github/actions/build-java-app
+        uses: ./.github/actions/build-java-app
         with:
           username: Aidor777
           password: ${{ secrets.GITHUB_TOKEN }}

@@ -34,12 +34,14 @@ runs:
         server-username: ${{ inputs.username }}
         server-password: GH_TOKEN
     - name: Build with Maven
+      shell: bash
       run: mvn -B package --file ${{ inputs.app-directory }}/pom.xml
     - name: Upload JAR
       uses: actions/upload-artifact@v4
       with:
         path: ${{ inputs.app-directory }}/target/*.jar
     - name: Publish the artifact
+      shell: bash
       run: mvn deploy --file {{ inputs.app-directory }}/pom.xml
       env:
         GH_TOKEN: ${{ inputs.password }}

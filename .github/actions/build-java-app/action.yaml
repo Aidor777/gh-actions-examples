@@ -1,0 +1,45 @@
+name: Build Java App
+
+description: Uses Maven to build a Java application and upload the JAR file as an artifact.
+
+inputs:
+    java-version:
+        description: 'Java version to use (default: 21)'
+        required: false
+        default: '21'
+    mvn-server-id:
+        description: 'Server ID for the Maven repository (default: github)'
+        required: false
+        default: 'github'
+    username:
+        description: 'Username for the Maven repository'
+        required: true
+    password:
+        description: 'Password for the Maven repository'
+        required: true
+    app-directory:
+        description: 'Directory containing the Java application'
+        required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Set up JDK
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: ${{ inputs.java-version }}
+        cache: 'maven'
+        server-id: ${{ inputs.mvn-server-id }}
+        server-username: ${{ inputs.username }}
+        server-password: GH_TOKEN
+    - name: Build with Maven
+      run: mvn -B package --file ${{ inputs.app-directory }}/pom.xml
+    - name: Upload JAR
+      uses: actions/upload-artifact@v4
+      with:
+        path: ${{ inputs.app-directory }}/target/*.jar
+    - name: Publish the artifact
+      run: mvn deploy --file {{ inputs.app-directory }}/pom.xml
+      env:
+        GH_TOKEN: ${{ inputs.password }}
